@@ -7,19 +7,20 @@ pipeline {
       parallel {                                 
         stage('checkStyle') {
           steps {
-             sh 'react-native run-android'
+             //sh 'react-native run-android'
+             echo 'checkStyle'
           }
         }
         stage('Unit Test') {
-          null
+          echo 'Unit'
         }
       }
     }
     stage('UI Testing') {
-      null
+      echo 'UI'
     }
     stage('Deploy') {
-      null
+      echo 'Deploy'
     }
   } 
   post {
