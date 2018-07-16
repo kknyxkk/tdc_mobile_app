@@ -12,15 +12,21 @@ pipeline {
           }
         }
         stage('Unit Test') {
-          echo 'Unit'
+          steps {
+             echo 'Unit Test'
+          }
         }
       }
     }
     stage('UI Testing') {
-      echo 'UI'
+      steps {
+          echo 'Front'
+      }
     }
     stage('Deploy') {
-      echo 'Deploy'
+      steps {
+          echo 'Deploy'
+      }
     }
   } 
   post {
