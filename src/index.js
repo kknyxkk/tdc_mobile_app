@@ -145,6 +145,7 @@ export default class App extends Component {
 
   render() {
     const resizeMode = 'cover';
+    
     return (
       <Container style={styles.container}>
         <Header style={styles.header_inm}>
@@ -163,58 +164,63 @@ export default class App extends Component {
         <Content>
 
         <Item rounded style={styles.itemEstilo}>
-              <Input placeholder="Nome" onChangeText={(text)=>this.updateValue(text, 'nome')} />
+          <Input name="input_nome" 
+                 placeholder="Nome" 
+                 onChangeText={(text)=>this.updateValue(text, 'nome')} />
         </Item>  
 
         <Item rounded style={styles.itemEstilo}>
-              <Input placeholder="E-mail" onChangeText={(text)=>this.updateValue(text, 'email')} />
-        </Item>       
+          <Input name="input_email" 
+                 placeholder="E-mail" 
+                 onChangeText={(text)=>this.updateValue(text, 'email')} />
+        </Item>      
+
           <ListItem style={styles.listItem} button onPress={() => this.toggleSwitch1()}>
             <CheckBox
+              name="chck_c_testing"
               color="#000"
               checked={this.state.checkbox1}
-              onPress={() => this.toggleSwitch1()}
-            />
+              onPress={() => this.toggleSwitch1()}/>
             <Body>
               <Text>Continuous Testing</Text>
             </Body>
           </ListItem>
           <ListItem style={styles.listItem} button onPress={() => this.toggleSwitch2()}>
             <CheckBox
+              name="chck_c_monitoring"
               color="#000"
               checked={this.state.checkbox2}
-              onPress={() => this.toggleSwitch2()}
-            />
+              onPress={() => this.toggleSwitch2()}/>
             <Body>
               <Text>Continuous Monitoring</Text>
             </Body>
           </ListItem>
           <ListItem style={styles.listItem} button onPress={() => this.toggleSwitch3()}>
             <CheckBox
+              name="chck_m_automation"
               color="#000"
               checked={this.state.checkbox3}
-              onPress={() => this.toggleSwitch3()}
-            />
+              onPress={() => this.toggleSwitch3()}/>
             <Body>
               <Text>Mobile Automation</Text>
             </Body>
           </ListItem>
           <ListItem style={styles.listItem} button onPress={() => this.toggleSwitch4()}>
             <CheckBox
+              name="chck_c_performance"
               color="#000"
               checked={this.state.checkbox4}
-              onPress={() => this.toggleSwitch4()}
-            />
+              onPress={() => this.toggleSwitch4()}/>
             <Body>
               <Text>Continuous Performance</Text>
             </Body>
           </ListItem>
-            <Button style={styles.button} block light style={styles.mb15}
-                    onPress={()=>this.submit()}>
+            <Button 
+              name="button_enviar"
+              style={styles.button} block light style={styles.mb15}
+              onPress={()=>this.submit()}>
               <Text>Enviar</Text>
             </Button>
-  
-
         </Content>
       </Container>
     );
