@@ -1,0 +1,3 @@
+rootProject.name = 'tdc_mobile_app'
+
+include ':app'
