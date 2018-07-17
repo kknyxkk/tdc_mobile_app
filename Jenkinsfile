@@ -47,13 +47,25 @@ pipeline {
         }
       }
     }
-}
-  post {
-    always {
-      archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
-      // And kill the emulator?
-      sh 'adb emu kill'
-    }
   }
- }
+    stage('Post') {
+        steps {
+            script {
+                if (currentBuild.result == 'SUCCESS') {
+                    sh 'echo Sucesso'
+                    archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
+                    sh 'adb emu kill'
+
+                }
+            }
+        }
+    }
+  //post {
+  //  always {
+  //    archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
+  //    // And kill the emulator?
+  //    sh 'adb emu kill'
+  //          }
+  //      }
+    }
 }
