@@ -24,8 +24,8 @@ pipeline {
             }
         steps {
               sh 'node --version'
-              ls
-              cat ./app.json
+              sh 'ls'
+              sh 'cat ./app.json'
             }
         }
     }
