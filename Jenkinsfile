@@ -1,9 +1,6 @@
 pipeline {
-  agent { 
-    node { label 'android' }                    
-  }
   stages {
-    stage('Lint & Unit Test') {
+    /*stage('Lint & Unit Test') {
       parallel {                                 
         stage('checkStyle') {
         }
@@ -19,6 +16,15 @@ pipeline {
   post {
     always {
 
+    }*/
+      stage('Test') {
+        agent { 
+              docker { image 'node:7-alpine' }                    
+            }
+        steps {
+              sh 'node --version'
+            }
+        }
     }
   }
 }
