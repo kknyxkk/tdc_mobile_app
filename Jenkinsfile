@@ -14,10 +14,5 @@ pipeline {
         sh 'cat ./app.json'
       }
     }
-    stage('') {
-      steps {
-        tool(name: 'Gradle', type: 'build')
-      }
-    }
   }
 }
