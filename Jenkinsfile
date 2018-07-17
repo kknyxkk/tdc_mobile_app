@@ -1,32 +1,23 @@
 pipeline {
   agent none
   stages {
-    /*stage('Lint & Unit Test') {
-      parallel {                                 
-        stage('checkStyle') {
+    stage('Test') {
+      agent {
+        docker {
+          image 'node:7-alpine'
         }
-        stage('Unit Test') {
-        }
+
+      }
+      steps {
+        sh 'node --version'
+        sh 'ls'
+        sh 'cat ./app.json'
       }
     }
-    stage('UI Testing') {
+    stage('') {
+      steps {
+        tool(name: 'Gradle', type: 'build')
+      }
     }
-    stage('Deploy') {
-    }
-  } 
-  post {
-    always {
-    Teste WebHook
-    }*/
-      stage('Test') {
-        agent { 
-              docker { image 'node:7-alpine' }                    
-            }
-        steps {
-              sh 'node --version'
-              sh 'ls'
-              sh 'cat ./app.json'
-            }
-        }
-    }
+  }
 }
