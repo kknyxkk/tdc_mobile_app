@@ -5,15 +5,14 @@ pipeline {
       parallel {
         stage('checkStyle') {
           steps {
-            // We use checkstyle gradle plugin to perform this
-            sh './gradlew checkStyle'
+            sh './android/gradlew checkStyle'
           }
         }
 
         stage('Unit Test') {
           steps {
             // Execute your Unit Test
-            sh './gradlew testStagingDebug'
+            sh './android/gradlew testStagingDebug'
           }
         }
       }
