@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Dploying API') {
           steps {
-            sh 'docker run -it -d -p 3000:3000 --name tdc-api rsmartins78/tdc-mobile-api'
+            sh 'docker run -it -d -p 3000:3000 --name tdc-api rsmartins78/tdc_mobile_api'
           }
         }
         stage('Service Test') {
