@@ -12,7 +12,9 @@ pipeline {
           steps {
             //sh 'source /etc/profile.d/android_home'
             sh "sleep 2"
-            sh 'docker run -it --rm --link tdc-api rsmartins78/tdc_service_test bash -c cucumber BASE_URL=http://tdc-api:3000/api/v1'
+            sh ''' 
+              docker run -it --rm --link tdc-api rsmartins78/tdc_service_test bash -c 'cucumber BASE_URL=http://tdc-api:3000/api/v1'
+            '''
           }
         }
       }
@@ -46,7 +48,9 @@ pipeline {
                     sh 'echo Sucesso'
                     archiveArtifacts(allowEmptyArchive: true, artifacts: 'android/app/build/outputs/apk/*.apk')
                     sh 'docker rm -f tdc-api'
-
+                } else {
+                    echo "Não sucesso, foi mal"
+                    sh 'docker rm -f tdc-api'
                 }
             }
         }
