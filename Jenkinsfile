@@ -13,7 +13,7 @@ pipeline {
             //sh 'source /etc/profile.d/android_home'
             sh "sleep 2"
             sh ''' 
-              docker run -it --rm -e BASE_URL=http://tdc-api:3000/api/v1 --link tdc-api rsmartins78/tdc_service_test cucumber
+              docker run -it --rm -e BASE_URL=http://tdc-api:3000/api/v1 --link tdc-api rsmartins78/tdc_service_test
             '''
           }
         }
