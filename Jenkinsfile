@@ -48,7 +48,8 @@ pipeline {
                     sh 'echo Sucesso'
                     archiveArtifacts(allowEmptyArchive: true, artifacts: 'android/app/build/outputs/apk/*.apk')
                     sh 'docker rm -f tdc-api'
-                } else {
+                } 
+                if (currentBuild.result == 'FAILED') {
                     echo "Não sucesso, foi mal"
                     sh 'docker rm -f tdc-api'
                 }
