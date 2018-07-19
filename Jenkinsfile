@@ -3,16 +3,16 @@ pipeline {
   stages {
     stage('Lint & Unit Test') {
       parallel {
-        stage('checkStyle') {
+        stage('Dploying API') {
           steps {
-            sh './android/gradlew checkStyle'
+            sh 'docker run -it -d -p 3000:3000 --name tdc-api rsmartins78/tdc-mobile-api'
           }
         }
-
-        stage('Unit Test') {
+        stage('Service Test') {
           steps {
-            // Execute your Unit Test
-            sh './android/gradlew testStagingDebug'
+            //sh 'source /etc/profile.d/android_home'
+            sh "sleep 2"
+            sh "docker run -it --rm --link tdc-api rsmartins78/tdc_service_test bash -c 'cucumber BASE_URL=http://tdc-api:3000/api/v1'"
           }
         }
       }
@@ -22,12 +22,7 @@ pipeline {
         script {                        
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
-          // Start your emulator, testing tools
-          sh 'emulator @Nexus_Emulator_API_24'
-          sh 'appium &'  
-     
-          // You're set to go, now execute your UI test
-          sh 'rspec spec -fd'
+            sh 'echo UI Testing...'
           }
         }
       }
@@ -37,8 +32,7 @@ pipeline {
         script {                                                        
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
-             if(env.BRANCH_NAME ==~ /master/) {
-               // Deploy when the committed branch is master (we use fastlane to complete this)     
+             if(env.BRANCH_NAME ==~ /master/) {     
                sh 'fastlane app_deploy'
           }
         }
@@ -50,8 +44,8 @@ pipeline {
             script {
                 if (currentBuild.result == 'SUCCESS') {
                     sh 'echo Sucesso'
-                    archiveArtifacts(allowEmptyArchive: true, artifacts: 'app/build/outputs/apk/production/release/*.apk')
-                    sh 'adb emu kill'
+                    archiveArtifacts(allowEmptyArchive: true, artifacts: 'android/app/build/outputs/apk/*.apk')
+                    sh 'docker rm -f tdc-api'
 
                 }
             }
