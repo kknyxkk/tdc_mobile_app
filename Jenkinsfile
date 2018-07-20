@@ -19,7 +19,7 @@ pipeline {
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
               sh 'source /etc/profile.d/android_home'
-              sh './android/gradlew assembleDebug'
+              sh './android/gradlew assembleRelease'
           }
         }
       }
