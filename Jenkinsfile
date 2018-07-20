@@ -14,11 +14,13 @@ pipeline {
       }
     }
     stage('Building App') {
+      agent { docker 'node' }
       steps {
         script {                        
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
               sh 'source /etc/profile.d/android_home'
+              sh 'npm install'
               sh './android/gradlew assembleRelease'
           }
         }
