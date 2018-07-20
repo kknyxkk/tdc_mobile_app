@@ -11,7 +11,6 @@ pipeline {
           sh 'echo "............................"'
           sh 'echo "sleep 2"'
           sh 'echo SUCCESS -> Executed tests: 3     Success: 3     Fails: 0'
-        }
       }
     }
     stage('Building App') {
@@ -110,5 +109,5 @@ pipeline {
             }
         }
     }
+  }
 }
-
