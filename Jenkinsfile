@@ -13,7 +13,7 @@ pipeline {
           sh 'echo SUCCESS -> Executed tests: 3     Success: 3     Fails: 0'
       }
     }
-    stage('Building App') {
+    /*stage('Building App') {
       agent { label "master" }
       steps {
         script {                        
@@ -26,7 +26,7 @@ pipeline {
           }
         }
       }
-    }
+    }*/
     stage('Integrated Tests') {
       steps {
         script {                        
