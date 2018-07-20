@@ -32,7 +32,7 @@ pipeline {
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
               sh 'echo "Integrated Test"'
-              sh 'ls android'
+              sh 'ls android' 
               sh 'ls android/src/main'
               sh 'ls android/src/main/java/com/tdc_mobile_app'
               sh 'echo "-- Running integrated tests for application tdc_mobile_app"'
