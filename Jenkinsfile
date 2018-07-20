@@ -73,7 +73,7 @@ pipeline {
               label "slave 1"
             }
             steps {
-              sh 'docker run -d -p 3000:3000 --name tdc-api rsmartins78/tdc_mobile_api'
+              sh 'sudo docker run -d -p 3000:3000 --name tdc-api rsmartins78/tdc_mobile_api'
             }
           }
           stage('Service Test') {
@@ -81,9 +81,9 @@ pipeline {
               label "slave 1"
             }
             steps {
-              sh "Waiting for API state Running"
+              sh 'echo "Waiting for API state Running"'
               sh "sleep 3"
-              sh 'docker run --rm -e BASE_URL=http://tdc-api:3000/api/v1 --link tdc-api rsmartins78/tdc_service_test'
+              sh 'sudo docker run --rm -e BASE_URL=http://tdc-api:3000/api/v1 --link tdc-api rsmartins78/tdc_service_test'
             }
           }
         }
