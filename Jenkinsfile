@@ -14,12 +14,12 @@ pipeline {
       }
     }
     stage('Building App') {
-      agent { docker 'node' }
+      agent { docker 'navarroaxel/react-native-android' }
       steps {
         script {                        
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
-              sh 'source /etc/profile.d/android_home'
+              //sh 'source /etc/profile.d/android_home'
               sh 'npm install'
               sh './android/gradlew assembleRelease'
           }
