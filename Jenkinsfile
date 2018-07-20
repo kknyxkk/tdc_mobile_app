@@ -21,7 +21,8 @@ pipeline {
               || currentBuild.result == 'SUCCESS') {  
               sh 'source /etc/profile.d/android_home'
               sh 'npm install'
-              sh './android/gradlew assembleRelease'
+              //sh './android/gradlew assembleRelease'
+              sh 'Build...'
           }
         }
       }
