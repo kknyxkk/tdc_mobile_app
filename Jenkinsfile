@@ -14,6 +14,7 @@ pipeline {
       }
     }
     stage('Building App') {
+      agent { label "master" }
       steps {
         script {                        
           if (currentBuild.result == null         
