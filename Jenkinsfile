@@ -14,12 +14,11 @@ pipeline {
       }
     }
     stage('Building App') {
-      agent { docker 'navarroaxel/react-native-android' }
       steps {
         script {                        
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
-              //sh 'source /etc/profile.d/android_home'
+              sh 'source /etc/profile.d/android_home'
               sh 'npm install'
               sh './android/gradlew assembleRelease'
           }
@@ -32,7 +31,7 @@ pipeline {
           if (currentBuild.result == null         
               || currentBuild.result == 'SUCCESS') {  
               sh 'echo "Integrated Test"'
-              sh 'ls android' 
+              sh 'ls android'
               sh 'ls android/src/main'
               sh 'ls android/src/main/java/com/tdc_mobile_app'
               sh 'echo "-- Running integrated tests for application tdc_mobile_app"'
